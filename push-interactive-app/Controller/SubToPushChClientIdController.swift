@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import UserNotifications
+import Ably
 
 class SubToPushChClientId: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
+    //var realtime: ARTRealtime!
+    var delegate: HomeControllerDelegate?
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     // MARK: Init
     
@@ -20,7 +25,8 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
         configureUI()
         
         //client Id input field ui
-        let txtClientId = UITextField(frame: CGRect(x: 10.0, y: 100.0, width: UIScreen.main.bounds.size.width - 20.0 , height: 50.0))
+        /*
+        let txtClientId = UITextField(frame: CGRect(x: 10.0, y: 150.0, width: UIScreen.main.bounds.size.width - 50.0 , height: 50.0))
         txtClientId.backgroundColor = .white
         txtClientId.borderStyle = .line
         txtClientId.keyboardAppearance = .dark
@@ -29,20 +35,35 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
         txtClientId.font = UIFont.systemFont(ofSize: 15.0)
         txtClientId.delegate = self
         self.view.addSubview(txtClientId)
+        */
         
-        //push notification publish button ui
-        let publishPush = UIButton.init(type: .system)
-        publishPush.frame = CGRect(x: 50, y: 300, width: 300, height: 52)
-        publishPush.setTitle("Send a push notification to this client", for: .normal)
-        publishPush.layer.borderWidth = 0.6
-        publishPush.layer.borderColor = UIColor(hexFromString: "333333").cgColor
-        publishPush.backgroundColor = UIColor(hexFromString: "333333")
-        publishPush.setTitleColor(UIColor(hexFromString: "FFFFFF"), for: .normal)
-        publishPush.layer.cornerRadius = 15.0
-        publishPush.center.x = self.view.center.x
-        publishPush.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
-        publishPush.addTarget(self, action: #selector(publishPushClicked(_ :)), for: .touchUpInside)
-        self.view.addSubview(publishPush)
+        //subscribe to push channel button ui
+        let subToPushChannel = UIButton.init(type: .system)
+        subToPushChannel.frame = CGRect(x: 50, y: 280, width: 300, height: 52)
+        subToPushChannel.setTitle("Subscribe to push channel", for: .normal)
+        subToPushChannel.layer.borderWidth = 0.6
+        subToPushChannel.layer.borderColor = UIColor(hexFromString: "333333").cgColor
+        subToPushChannel.backgroundColor = UIColor(hexFromString: "333333")
+        subToPushChannel.setTitleColor(UIColor(hexFromString: "FFFFFF"), for: .normal)
+        subToPushChannel.layer.cornerRadius = 15.0
+        subToPushChannel.center.x = self.view.center.x
+        subToPushChannel.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
+        subToPushChannel.addTarget(self, action: #selector(subToPushClicked(_ :)), for: .touchUpInside)
+        self.view.addSubview(subToPushChannel)
+        
+        //unsubscribe to push channel button ui
+        let unsubFromPushChannel = UIButton.init(type: .system)
+        unsubFromPushChannel.frame = CGRect(x: 50, y: 380, width: 300, height: 52)
+        unsubFromPushChannel.setTitle("Unsubscribe from push channel", for: .normal)
+        unsubFromPushChannel.layer.borderWidth = 0.6
+        unsubFromPushChannel.layer.borderColor = UIColor(hexFromString: "333333").cgColor
+        unsubFromPushChannel.backgroundColor = UIColor(hexFromString: "333333")
+        unsubFromPushChannel.setTitleColor(UIColor(hexFromString: "FFFFFF"), for: .normal)
+        unsubFromPushChannel.layer.cornerRadius = 15.0
+        unsubFromPushChannel.center.x = self.view.center.x
+        unsubFromPushChannel.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
+        unsubFromPushChannel.addTarget(self, action: #selector(unsubFromPushClicked(_ :)), for: .touchUpInside)
+        self.view.addSubview(unsubFromPushChannel)
     }
     
     // MARK: Selectors
@@ -52,9 +73,53 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: Helpers
-    @objc func publishPushClicked(_ : UIButton) {
-        print("Clicked publish push")
+    @objc func subToPushClicked(_ : UIButton) {
+        print("Clicked subscribe to push channel")
+        let pushChannel = appDelegate.realtime.channels.get("push")
+        pushChannel.attach() { (err) in
+            print("** channel attached, err=\(String(describing: err))")
+            if (err != nil){
+                let alert = UIAlertController(title: "Error", message: "Attach failed", preferredStyle: .alert)
+                alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            print("** device ID \(self.appDelegate.realtime.device.id)")
+            
+            pushChannel.push.subscribeClient { (err) in
+                if (err != nil){
+                    let alert = UIAlertController(title: "Error", message: "Sub failed", preferredStyle: .alert)
+                    alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                DispatchQueue.main.async {
+                    print("** device ID \(self.appDelegate.realtime.device.id)")
+                }
+                let alert = UIAlertController(title: "Success", message: "Sub success", preferredStyle: .alert)
+                alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                print("** channel.push.subscribeClient: err=\(String(describing: err))")
+                self.appDelegate.subscribed = true
+            }
+        }
     }
+    
+    @objc func unsubFromPushClicked(_ : UIButton) {
+        print("Clicked unsubscribe from push channel")
+        let pushChannel = appDelegate.realtime.channels.get("push")
+            
+        pushChannel.push.unsubscribeClient() { (err) in
+            DispatchQueue.main.async {
+                print("** device ID \(self.appDelegate.realtime.device.id)")
+            }
+            print("** channel.push.unsubscribeClient: err=\(String(describing: err))")
+            self.appDelegate.subscribed = false
+        }
+    }
+    
+    
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

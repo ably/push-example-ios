@@ -15,7 +15,7 @@ extension Notification.Name {
     static let ablyPushDidDeactivate = Notification.Name(rawValue: "ablyPushDidDeactivate")
 }
 
-let authURL = "<YOUR-AUTH-URL>"
+let authURL = "<YOUR-API-KEY>"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate {
     
@@ -34,18 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
         window?.rootViewController = ContainerController()
         
         print("** hello there")
-        
-        self.realtime = self.getAblyRealtime()
-        self.realtime.connection.on { (stateChange) in
-            print("** Connection state change: \(String(describing: stateChange))")
-        }
-        
         UNUserNotificationCenter.current().requestAuthorization(options:[.badge, .alert, .sound]) { (granted, err) in
             DispatchQueue.main.async() {
                 UIApplication.shared.registerForRemoteNotifications()
                 print("** after registerForRemoteNotifications")
             }
         }
+        
+        self.realtime = self.getAblyRealtime()
+        self.realtime.connection.on { (stateChange) in
+            print("** Connection state change: \(String(describing: stateChange))")
+        }
+        
+        
         
 
   
@@ -64,6 +65,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
             print("** didFailToRegisterForRemoteNotificationsWithError")
             ARTPush.didFailToRegisterForRemoteNotificationsWithError(error, realtime: self.getAblyRealtime())
         }
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+        print("** received notification: \(userInfo)")
     }
     
     private func getAblyRealtime() -> ARTRealtime {
