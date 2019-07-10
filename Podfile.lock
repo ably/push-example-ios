@@ -1,0 +1,98 @@
+PODS:
+  - Ably (1.1.8):
+    - KSCrashAblyFork (= 1.15.20-ably-1)
+    - MsgPackAblyFork (= 0.2.0-ably-1)
+    - SAMKeychain (= 1.5.3)
+    - SocketRocketAblyFork (= 0.5.2-ably-4)
+    - ULID (= 1.1.0)
+  - KSCrashAblyFork (1.15.20-ably-1):
+    - KSCrashAblyFork/Installations (= 1.15.20-ably-1)
+  - KSCrashAblyFork/Installations (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting
+  - KSCrashAblyFork/Recording (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording/Tools (= 1.15.20-ably-1)
+  - KSCrashAblyFork/Recording/Tools (1.15.20-ably-1)
+  - KSCrashAblyFork/Reporting (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/MessageUI (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Sinks (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Tools (= 1.15.20-ably-1)
+  - KSCrashAblyFork/Reporting/Filters (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters/Alert (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Filters/AppleFmt (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Filters/Base (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Filters/Basic (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Filters/GZip (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Filters/JSON (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Filters/Sets (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Filters/Stringify (= 1.15.20-ably-1)
+    - KSCrashAblyFork/Reporting/Filters/Tools (= 1.15.20-ably-1)
+  - KSCrashAblyFork/Reporting/Filters/Alert (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters/Base
+  - KSCrashAblyFork/Reporting/Filters/AppleFmt (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters/Base
+  - KSCrashAblyFork/Reporting/Filters/Base (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+  - KSCrashAblyFork/Reporting/Filters/Basic (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters/Base
+  - KSCrashAblyFork/Reporting/Filters/GZip (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters/Base
+  - KSCrashAblyFork/Reporting/Filters/JSON (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters/Base
+  - KSCrashAblyFork/Reporting/Filters/Sets (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters/AppleFmt
+    - KSCrashAblyFork/Reporting/Filters/Base
+    - KSCrashAblyFork/Reporting/Filters/Basic
+    - KSCrashAblyFork/Reporting/Filters/GZip
+    - KSCrashAblyFork/Reporting/Filters/JSON
+    - KSCrashAblyFork/Reporting/Filters/Stringify
+  - KSCrashAblyFork/Reporting/Filters/Stringify (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters/Base
+  - KSCrashAblyFork/Reporting/Filters/Tools (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+  - KSCrashAblyFork/Reporting/MessageUI (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+  - KSCrashAblyFork/Reporting/Sinks (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+    - KSCrashAblyFork/Reporting/Filters
+    - KSCrashAblyFork/Reporting/Tools
+  - KSCrashAblyFork/Reporting/Tools (1.15.20-ably-1):
+    - KSCrashAblyFork/Recording
+  - MsgPackAblyFork (0.2.0-ably-1)
+  - SAMKeychain (1.5.3)
+  - SocketRocketAblyFork (0.5.2-ably-4)
+  - ULID (1.1.0)
+
+DEPENDENCIES:
+  - Ably (~> 1.1.3)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Ably
+    - KSCrashAblyFork
+    - MsgPackAblyFork
+    - SAMKeychain
+    - SocketRocketAblyFork
+    - ULID
+
+SPEC CHECKSUMS:
+  Ably: 0e09bd74d4faf89522e19996762119edea8a8a92
+  KSCrashAblyFork: e58ed6ba92e08e6a8a6ad601077495ef21a233b7
+  MsgPackAblyFork: 42dc34f3bd458b57de28341351e89f7c73393207
+  SAMKeychain: 483e1c9f32984d50ca961e26818a534283b4cd5c
+  SocketRocketAblyFork: ed717517ed5cb5217878987c84bc415890582bb3
+  ULID: b4714891a02819364faecd574a53e391c4c6de9d
+
+PODFILE CHECKSUM: 6e9ff14601a6cb12ee0801522b3685c4530b6653
+
+COCOAPODS: 1.7.3
