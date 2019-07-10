@@ -15,7 +15,7 @@ extension Notification.Name {
     static let ablyPushDidDeactivate = Notification.Name(rawValue: "ablyPushDidDeactivate")
 }
 
-let authURL = "<YOUR-API-KEY>"
+let authURL = "<YOUR-AUTH-URL>"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate {
     
