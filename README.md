@@ -4,6 +4,8 @@ This app provides an interactive interface to test the various methods and actio
 Steps to try it out yourself will be added shortly
 
 ## Screenshots
-<img width="250" alt="Screenshot 2019-07-10 at 10 54 05" src="https://user-images.githubusercontent.com/5900152/60961514-48e9f680-a304-11e9-8713-1582f47f0181.png">
-<img width="250" alt="Screenshot 2019-07-10 at 10 54 15" src="https://user-images.githubusercontent.com/5900152/60961513-48516000-a304-11e9-9d51-a2574379a54c.png">
+
+<img width="250" alt="Screenshot 2019-07-10 at 10 54 05" src="https://user-images.githubusercontent.com/5900152/60965843-bd299780-a30e-11e9-8812-40f4b2bfff22.PNG">
+
+<img width="250" alt="Screenshot 2019-07-10 at 10 54 15" src="https://user-images.githubusercontent.com/5900152/60965842-bd299780-a30e-11e9-8779-8c9794953674.PNG">
 
