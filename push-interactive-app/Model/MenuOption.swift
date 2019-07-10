@@ -10,19 +10,19 @@ import UIKit
 
 enum MenuOption: Int, CustomStringConvertible {
     case subscribeToPushChClientId
-    case publishToChannel
-    case subscribePushCh
-    case unsubscribePushCh
     case publishPushNotification
+    case publishToChannel
+    case unsubscribePushCh
+    case subscribePushCh
+
 
     var description: String {
         switch self {
-            
         case .subscribeToPushChClientId: return "Sub/Unsub push channel with clientId"
-        case .unsubscribePushCh: return "TODO from push channel"
+        case .publishPushNotification: return "Publish push notifications"
         case .publishToChannel: return "Pub to channel"
+        case .unsubscribePushCh: return "TODO from push channel"
         case .subscribePushCh: return "Sub to channel"
-        case .publishPushNotification: return "Send push notification"
         }
         
     }

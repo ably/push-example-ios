@@ -86,10 +86,9 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
             }
             
             print("** device ID \(self.appDelegate.realtime.device.id)")
-            
             pushChannel.push.subscribeClient { (err) in
                 if (err != nil){
-                    let alert = UIAlertController(title: "Error", message: "Sub failed", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error", message: "Subscribe failed", preferredStyle: .alert)
                     alert.addAction(.init(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                     return
@@ -97,7 +96,7 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
                 DispatchQueue.main.async {
                     print("** device ID \(self.appDelegate.realtime.device.id)")
                 }
-                let alert = UIAlertController(title: "Success", message: "Sub success", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Success", message: "Subcribe success", preferredStyle: .alert)
                 alert.addAction(.init(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 print("** channel.push.subscribeClient: err=\(String(describing: err))")
@@ -111,17 +110,23 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
         let pushChannel = appDelegate.realtime.channels.get("push")
             
         pushChannel.push.unsubscribeClient() { (err) in
+            if (err != nil){
+                let alert = UIAlertController(title: "Error", message: "Unsubscribe failed", preferredStyle: .alert)
+                alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
             DispatchQueue.main.async {
                 print("** device ID \(self.appDelegate.realtime.device.id)")
             }
-            print("** channel.push.unsubscribeClient: err=\(String(describing: err))")
+            let alert = UIAlertController(title: "Success", message: "Unsubscribe success", preferredStyle: .alert)
+            alert.addAction(.init(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            print("** channel.push.subscribeClient: err=\(String(describing: err))")
             self.appDelegate.subscribed = false
         }
     }
-    
-    
-    
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

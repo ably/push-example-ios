@@ -86,16 +86,17 @@ class ContainerController: UIViewController {
     func didSelectMenuOption(menuOption: MenuOption){
         switch menuOption {
             case .subscribeToPushChClientId:
-                let controller = SubToPushChClientId()
-                present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
+                let pubsubController = SubToPushChClientId()
+                present(UINavigationController(rootViewController: pubsubController), animated: true, completion: nil)
+            case .publishPushNotification:
+                let pushController = PublishNotifications()
+                present(UINavigationController(rootViewController: pushController), animated: true, completion: nil)
             case .publishToChannel:
                 print("pub to ch")
             case .subscribePushCh:
                 print("sub to push ch")
             case .unsubscribePushCh:
                 print("unsub from ch")
-            case .publishPushNotification:
-                print("publish push notif")
         }
     }
     
