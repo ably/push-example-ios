@@ -10,6 +10,11 @@ import UIKit
 import Ably
 import UserNotifications
 
+extension Notification.Name {
+    static let ablyPushDidActivate = Notification.Name(rawValue: "ablyPushDidActivate")
+    static let ablyPushDidDeactivate = Notification.Name(rawValue: "ablyPushDidDeactivate")
+}
+
 let authURL = "<YOUR-AUTH-URL>"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate {
@@ -77,7 +82,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
             if let state = state {
                 switch state.current {
                 case .connected:
-                    print("Successfully connected to Ably")
+                    print("Successfully connected to Ably with clientId")
+                    print(self.realtime.auth.clientId)
                 case .failed:
                     print("Connection to Ably failed")
                 default:
@@ -111,37 +117,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
     
     func didActivateAblyPush(_ error: ARTErrorInfo?) {
         print("!!!inside activate deletage")
-        if let error = error {
-            // create the alert
-            print("you have an error")
-            //let alert = UIAlertController(title: "Error", message: "Push activation failed", preferredStyle: UIAlertController.Style.alert)
-            //alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            //homeController.present(alert, animated: true, completion: nil)
-            return
-        }
-        print("activation successful")
-        //let alert = UIAlertController(title: "Success", message: "Push activation successful", preferredStyle: UIAlertController.Style.alert)
-        //alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        //homeController.present(alert, animated: true, completion: nil)
+        NotificationCenter.default.post(name: .ablyPushDidActivate, object: nil, userInfo: ["Error": error]) //emit this event to any subscribers
         
+        print("activation successful")
         return
     }
     
     func didDeactivateAblyPush(_ error: ARTErrorInfo?) {
         print("!!!inside deactivate deletage")
-        if let error = error {
-            // create the alert
-            print("you have an error")
-            //let alert = UIAlertController(title: "Error", message: "Push deactivation failed", preferredStyle: UIAlertController.Style.alert)
-            //alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            //homeController.present(alert, animated: true, completion: nil)
-            return
-        }
-        print("deactivation successful")
-        //let alert = UIAlertController(title: "Success", message: "Push deactivation successful", preferredStyle: UIAlertController.Style.alert)
-        //alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        //homeController.present(alert, animated: true, completion: nil)
+        NotificationCenter.default.post(name: .ablyPushDidDeactivate, object: nil, userInfo: ["Error": error]) //emit this event to any subscribers
         
+        print("deactivation successful")
         return
     }
     

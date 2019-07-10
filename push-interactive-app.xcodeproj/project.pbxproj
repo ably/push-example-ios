@@ -21,7 +21,7 @@
 		6DF3738A22D527AE00698449 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738922D527AD00698449 /* Protocols.swift */; };
 		6DF3738C22D52C3800698449 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738B22D52C3800698449 /* MenuOptionCell.swift */; };
 		6DF3738E22D530A800698449 /* MenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738D22D530A800698449 /* MenuOption.swift */; };
-		6DF3739022D538BF00698449 /* SubToChannelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738F22D538BF00698449 /* SubToChannelController.swift */; };
+		6DF3739022D538BF00698449 /* SubToPushChClientIdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738F22D538BF00698449 /* SubToPushChClientIdController.swift */; };
 		6DF3739922D5E3F000698449 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3739822D5E3F000698449 /* AlertController.swift */; };
 		8715EFD124963FEC3DF894BF /* Pods_push_interactive_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54AD651D70E4609D1E6E83BC /* Pods_push_interactive_appTests.framework */; };
 /* End PBXBuildFile section */
@@ -67,7 +67,7 @@
 		6DF3738922D527AD00698449 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		6DF3738B22D52C3800698449 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		6DF3738D22D530A800698449 /* MenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOption.swift; sourceTree = "<group>"; };
-		6DF3738F22D538BF00698449 /* SubToChannelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubToChannelController.swift; sourceTree = "<group>"; };
+		6DF3738F22D538BF00698449 /* SubToPushChClientIdController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubToPushChClientIdController.swift; sourceTree = "<group>"; };
 		6DF3739822D5E3F000698449 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		7552D2D770D9BFD630AD3D12 /* Pods-push-interactive-appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-push-interactive-appTests.release.xcconfig"; path = "Target Support Files/Pods-push-interactive-appTests/Pods-push-interactive-appTests.release.xcconfig"; sourceTree = "<group>"; };
 		9DBC72793A794CC033257C8A /* Pods_push_interactive_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_push_interactive_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,7 +177,7 @@
 				6DF3738322D51E2500698449 /* ContainerController.swift */,
 				6DF3738522D51E3B00698449 /* HomeController.swift */,
 				6DF3738722D51E4F00698449 /* MenuController.swift */,
-				6DF3738F22D538BF00698449 /* SubToChannelController.swift */,
+				6DF3738F22D538BF00698449 /* SubToPushChClientIdController.swift */,
 				6DF3739822D5E3F000698449 /* AlertController.swift */,
 			);
 			path = Controller;
@@ -446,7 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DF3739022D538BF00698449 /* SubToChannelController.swift in Sources */,
+				6DF3739022D538BF00698449 /* SubToPushChClientIdController.swift in Sources */,
 				6DF3739922D5E3F000698449 /* AlertController.swift in Sources */,
 				6DF3738A22D527AE00698449 /* Protocols.swift in Sources */,
 				6DF3738C22D52C3800698449 /* MenuOptionCell.swift in Sources */,

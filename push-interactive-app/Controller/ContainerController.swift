@@ -85,8 +85,8 @@ class ContainerController: UIViewController {
     
     func didSelectMenuOption(menuOption: MenuOption){
         switch menuOption {
-            case .subscribeToChannel:
-                let controller = SubToChannelController()
+            case .subscribeToPushChClientId:
+                let controller = SubToPushChClientId()
                 present(UINavigationController(rootViewController: controller), animated: true, completion: nil)
             case .publishToChannel:
                 print("pub to ch")

@@ -56,10 +56,43 @@ class HomeController: UIViewController{
         
         
         configureNavigationBar()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleAblyPushDidActivate), name: .ablyPushDidActivate, object: nil) //add subscriber
+        NotificationCenter.default.addObserver(self, selector: #selector(self.handleAblyPushDidDeactivate), name: .ablyPushDidDeactivate, object: nil) //add subscriber
+        
+        
     }
     
     //MARK: Handlers
     
+    // activation action handler
+    @objc func handleAblyPushDidActivate(notification: Notification) {
+        if let error = notification.userInfo?["Error"] as? ARTErrorInfo {
+            print(#function, "with error", error)
+            let alert = UIAlertController(title: "Error", message: "Push activation failed", preferredStyle: .alert)
+            alert.addAction(.init(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let alert = UIAlertController(title: "Success", message: "Push activation successful", preferredStyle: .alert)
+        alert.addAction(.init(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // deactivation action handler
+    @objc func handleAblyPushDidDeactivate(notification: Notification) {
+        if let error = notification.userInfo?["Error"] as? ARTErrorInfo {
+            print(#function, "with error", error)
+            let alert = UIAlertController(title: "Error", message: "Push deactivation failed", preferredStyle: .alert)
+            alert.addAction(.init(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let alert = UIAlertController(title: "Success", message: "Push deactivation successful", preferredStyle: .alert)
+        alert.addAction(.init(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     //activate button handler
     @objc func activateButtonClicked(_ : UIButton) {
