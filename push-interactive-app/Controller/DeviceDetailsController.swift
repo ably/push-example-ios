@@ -28,7 +28,7 @@ class DeviceDetailsController: UIViewController, UITextFieldDelegate {
         txtDeviceDetails.keyboardType = .default
         txtDeviceDetails.font = UIFont.systemFont(ofSize: 18.0)
         txtDeviceDetails.textContainerInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
-        txtDeviceDetails.text = "1. ClientId: " + appDelegate.myClientId + "\n\n\n2. DeviceId: " + appDelegate.myDeviceId + "\n\n\n3. DeviceToken: " + appDelegate.myDeviceToken + "\n\n\n4. Push channel: " + appDelegate.myPushChannel
+        txtDeviceDetails.text = "1. ClientId is " + appDelegate.myClientId + "\n\n\n2. DeviceId is " + appDelegate.myDeviceId + "\n\n\n3. DeviceToken is " + appDelegate.myDeviceToken + "\n\n\n4. Push channel is " + appDelegate.myPushChannel
         //txtDeviceDetails.append =
         self.view.addSubview(txtDeviceDetails)
     }

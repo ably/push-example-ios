@@ -101,18 +101,57 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
     }
     
     // MARK: Helpers
+    
     @objc func subToPushClientIdClicked(_ : UIButton) {
+        print("Clicked subscribe to push channel with clientId")
+        let pushChannel = appDelegate.realtime.channels.get(appDelegate.myPushChannel)
+        pushChannel.attach() { (err) in
+            print("** channel attached, err=\(String(describing: err))")
+            print("** attempting to unsub device")
+            pushChannel.push.unsubscribeDevice() { (err) in
+                if (err != nil){
+                    print("unsubscribe deviceId failed")
+                    return
+                }
+                DispatchQueue.main.async {
+                    print("unsubscribing device id")
+                }
+                print("** channel.push.unsubscribeClient: err=\(String(describing: err))")
+                print("unsubscribing device id success")
+                self.appDelegate.subscribed = false
+            }
+            print("** attempting to subscribe to push with clientId")
+            pushChannel.push.subscribeClient() { (err) in
+                if (err != nil){
+                    let alert = UIAlertController(title: "Error", message: "Subscribe client failed", preferredStyle: .alert)
+                    alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+                DispatchQueue.main.async {
+                    //print("** device ID \(self.realtime.device.id)")
+                    print("** inside async clientId")
+                }
+                print("** channel.push.subscribeClient: err=\(String(describing: err))")
+                let alert = UIAlertController(title: "Success", message: "Subscribe client success", preferredStyle: .alert)
+                alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                self.appDelegate.subscribed = true
+            }
+        }
+    }
+    
+    /*@objc func subToPushClientIdClicked(_ : UIButton) {
         print("Clicked subscribe to push channel with clientId")
         //let pushChannel = appDelegate.realtime.channels.get("push")
         let pushChannel = appDelegate.realtime.channels.get(appDelegate.myPushChannel)
+        print(pushChannel)
         pushChannel.attach() { (err) in
             print("** channel attached, err=\(String(describing: err))")
             print("** attempting to subscribe to push with clientId")
             pushChannel.push.unsubscribeDevice() { (err) in
                 if (err != nil){
-                    let alert = UIAlertController(title: "Error", message: "Unsubscribe device failed", preferredStyle: .alert)
-                    alert.addAction(.init(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+                    print("Device unsubscribe failed")
                     return
                 }
                 DispatchQueue.main.async {
@@ -121,7 +160,7 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
                 print("** channel.push.unsubscribeDevice: err=\(String(describing: err))")
                 self.appDelegate.subscribed = false
             }
-            pushChannel.push.subscribeClient { (err) in
+            pushChannel.push.subscribeClient() { (err) in
                 if (err != nil){
                     let alert = UIAlertController(title: "Error", message: "Subscribe client failed", preferredStyle: .alert)
                     alert.addAction(.init(title: "OK", style: .default, handler: nil))
@@ -139,7 +178,7 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
                 self.appDelegate.subscribed = true
             }
         }
-    }
+    }*/
     
     @objc func unsubFromPushClientIdClicked(_ : UIButton) {
         print("Clicked unsubscribe from push channel with clientId")
@@ -180,7 +219,13 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
                 print("** channel.push.unsubscribeClient: err=\(String(describing: err))")
                 self.appDelegate.subscribed = false
             }
-            pushChannel.push.subscribeDevice { (err) in
+            pushChannel.push.subscribeDevice() { (err) in
+                if (err != nil){
+                    let alert = UIAlertController(title: "Error", message: "Subscribe device failed", preferredStyle: .alert)
+                    alert.addAction(.init(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
                 DispatchQueue.main.async {
                     //print("** device ID \(self.realtime.device.id)")
                     print("** inside async")
@@ -227,7 +272,7 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .white
         
         navigationController?.navigationBar.barTintColor = .darkGray
-        navigationItem.title = "Subscribe to push channel with client Id"
+        navigationItem.title = "Subscribe to clientId and deviceId to push"
         navigationController?.navigationBar.barStyle = .black
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
