@@ -24,11 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
     var realtime: ARTRealtime!
     var channel: ARTRealtimeChannel!
     var subscribed = false
-    
+    var myDeviceId = ""
+    var myClientId = ""
+    var myDeviceToken = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        UNUserNotificationCenter.current().delegate = self
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = ContainerController()
@@ -45,17 +47,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
         self.realtime.connection.on { (stateChange) in
             print("** Connection state change: \(String(describing: stateChange))")
         }
-        
-        
-        
-
-  
         return true
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         DispatchQueue.main.async() {
             print("** didRegisterForRemoteNotificationsWithDeviceToken")
+            self.myDeviceToken = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
             ARTPush.didRegisterForRemoteNotifications(withDeviceToken: deviceToken, realtime: self.getAblyRealtime())
         }
     }
@@ -89,6 +87,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
                 case .connected:
                     print("Successfully connected to Ably with clientId")
                     print(self.realtime.auth.clientId)
+                    self.myClientId = String(self.realtime.auth.clientId ?? "none")
+                    self.myDeviceId = String(self.realtime.device.id)
+                    print(self.myClientId)
+                    print(self.myDeviceToken)
+                    print(self.myDeviceId)
                 case .failed:
                     print("Connection to Ably failed")
                 default:
@@ -123,7 +126,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
     func didActivateAblyPush(_ error: ARTErrorInfo?) {
         print("!!!inside activate deletage")
         NotificationCenter.default.post(name: .ablyPushDidActivate, object: nil, userInfo: ["Error": error]) //emit this event to any subscribers
-        
+       
         print("activation successful")
         return
     }
@@ -159,5 +162,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
     }
 
 
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        // Tell the app that we have finished processing the user's action (eg: tap on notification banner) / response
+        // Handle received remoteNotification: 'response.notification.request.content.userInfo'
+        completionHandler()
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        // Show the notification alert in foreground
+        print("Got notification!")
+        completionHandler([.alert, .sound])
+    }
+    
 }
 

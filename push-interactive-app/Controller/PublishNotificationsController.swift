@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 import Ably
 
-class PublishNotifications: UIViewController, UITextFieldDelegate {
+class PublishNotificationsController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     var delegate: HomeControllerDelegate?
@@ -83,7 +83,7 @@ class PublishNotifications: UIViewController, UITextFieldDelegate {
     @objc func pubDirectWithDeviceIdClicked(_ : UIButton) {
         print("Clicked publish direct with deviceId")
         let recipient: [String: Any] = [
-            "deviceId": "xxxxxxxxxxxxxx"
+            "deviceId": "0001EJCFKY00GW0X476W5TVBFE"
         ]
         let data: [String: Any] = [
             "notification": [
@@ -102,7 +102,7 @@ class PublishNotifications: UIViewController, UITextFieldDelegate {
     @objc func pubDirectWithClientIdClicked(_ : UIButton) {
         print("Clicked publish direct with clientId")
         let recipient: [String: Any] = [
-            "clientId": "xxxxxxxxxxxxxx"
+            "clientId": "1111"
         ]
         let data: [String: Any] = [
             "notification": [

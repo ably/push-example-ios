@@ -89,10 +89,13 @@ class ContainerController: UIViewController {
                 let pubsubController = SubToPushChClientId()
                 present(UINavigationController(rootViewController: pubsubController), animated: true, completion: nil)
             case .publishPushNotification:
-                let pushController = PublishNotifications()
+                print("pub notifs")
+                let pushController = PublishNotificationsController()
                 present(UINavigationController(rootViewController: pushController), animated: true, completion: nil)
-            case .publishToChannel:
-                print("pub to ch")
+            case .showLocalDeviceDetails:
+                print("show device details")
+                let deviceDetailsController = DeviceDetailsController()
+                present(UINavigationController(rootViewController: deviceDetailsController), animated: true, completion: nil)
             case .subscribePushCh:
                 print("sub to push ch")
             case .unsubscribePushCh:
