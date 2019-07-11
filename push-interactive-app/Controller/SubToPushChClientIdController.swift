@@ -141,45 +141,6 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
         }
     }
     
-    /*@objc func subToPushClientIdClicked(_ : UIButton) {
-        print("Clicked subscribe to push channel with clientId")
-        //let pushChannel = appDelegate.realtime.channels.get("push")
-        let pushChannel = appDelegate.realtime.channels.get(appDelegate.myPushChannel)
-        print(pushChannel)
-        pushChannel.attach() { (err) in
-            print("** channel attached, err=\(String(describing: err))")
-            print("** attempting to subscribe to push with clientId")
-            pushChannel.push.unsubscribeDevice() { (err) in
-                if (err != nil){
-                    print("Device unsubscribe failed")
-                    return
-                }
-                DispatchQueue.main.async {
-                    print("unsubscribing device id")
-                }
-                print("** channel.push.unsubscribeDevice: err=\(String(describing: err))")
-                self.appDelegate.subscribed = false
-            }
-            pushChannel.push.subscribeClient() { (err) in
-                if (err != nil){
-                    let alert = UIAlertController(title: "Error", message: "Subscribe client failed", preferredStyle: .alert)
-                    alert.addAction(.init(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    return
-                }
-                DispatchQueue.main.async {
-                    //print("** device ID \(self.realtime.device.id)")
-                    print("** subscribing client id")
-                }
-                let alert = UIAlertController(title: "Success", message: "Subscribe client success", preferredStyle: .alert)
-                alert.addAction(.init(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                print("** channel.push.subscribeClient: err=\(String(describing: err))")
-                self.appDelegate.subscribed = true
-            }
-        }
-    }*/
-    
     @objc func unsubFromPushClientIdClicked(_ : UIButton) {
         print("Clicked unsubscribe from push channel with clientId")
         let pushChannel = appDelegate.realtime.channels.get(appDelegate.myPushChannel)
