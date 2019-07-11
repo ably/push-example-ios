@@ -15,6 +15,8 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
     // MARK: Properties
     var delegate: HomeControllerDelegate?
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var realtime: ARTRealtime!
+    //var message: ARTMessage!
     
     // MARK: Init
     override func viewDidLoad() {
@@ -62,12 +64,12 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
         publishDirectNative .center.x = self.view.center.x
         publishDirectNative .contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         publishDirectNative .addTarget(self, action: #selector(pubDirectWithNativeRecipientClicked(_ :)), for: .touchUpInside)
-        self.view.addSubview(publishDirectNative )
+        self.view.addSubview(publishDirectNative)
         
         //channel publish
         let publishViaChannel = UIButton.init(type: .system)
         publishViaChannel .frame = CGRect(x: 50, y: 480, width: 300, height: 52)
-        publishViaChannel .setTitle("Publish directly with native details", for: .normal)
+        publishViaChannel .setTitle("Publish via channel", for: .normal)
         publishViaChannel .layer.borderWidth = 0.6
         publishViaChannel .layer.borderColor = UIColor(hexFromString: "333333").cgColor
         publishViaChannel .backgroundColor = UIColor(hexFromString: "333333")
@@ -76,14 +78,14 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
         publishViaChannel .center.x = self.view.center.x
         publishViaChannel .contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         publishViaChannel .addTarget(self, action: #selector(pubViaChannelClicked(_ :)), for: .touchUpInside)
-        self.view.addSubview(publishDirectNative )
+        self.view.addSubview(publishViaChannel)
     }
     
     // MARK: Selectors
     @objc func pubDirectWithDeviceIdClicked(_ : UIButton) {
         print("Clicked publish direct with deviceId")
         let recipient: [String: Any] = [
-            "deviceId": "0001EJCFKY00GW0X476W5TVBFE"
+            "deviceId": appDelegate.myDeviceId
         ]
         let data: [String: Any] = [
             "notification": [
@@ -101,8 +103,9 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
     
     @objc func pubDirectWithClientIdClicked(_ : UIButton) {
         print("Clicked publish direct with clientId")
+        print("ClientId to publish to: " + appDelegate.myClientId)
         let recipient: [String: Any] = [
-            "clientId": "1111"
+            "clientId": appDelegate.myClientId
         ]
         let data: [String: Any] = [
             "notification": [
@@ -122,7 +125,7 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
         print("Clicked publish direct with Native recipient details")
         let recipient: [String: Any] = [
             "transportType": "apns",
-            "deviceToken": "XXXXXXXX"
+            "deviceToken": appDelegate.myDeviceToken
         ]
         
         let data: [String: Any] = [
@@ -139,7 +142,7 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func pubViaChannelClicked(_ : UIButton) {
-        print("Clicked unsubscribe from push channel")
+        print("Clicked publish via push channel")
         let pushChannel = appDelegate.realtime.channels.get("push")
         
         var message = ARTMessage(name: "example", data: "rest data")
@@ -147,7 +150,7 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
             "push": [
                 "notification": [
                     "title": "Hello from Ably!",
-                    "body": "This was sent from an Ably channel"
+                    "body": "Example push notification from Ably."
                 ],
                 "data": [
                     "foo": "bar",
