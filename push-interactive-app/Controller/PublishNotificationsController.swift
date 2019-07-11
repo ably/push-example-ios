@@ -24,20 +24,6 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = UIColor(hexFromString: "F9A01B")
         configureUI()
         
-        //direct deviceID
-        let publishDirectWithDeviceId = UIButton.init(type: .system)
-        publishDirectWithDeviceId.frame = CGRect(x: 50, y: 180, width: 300, height: 52)
-        publishDirectWithDeviceId.setTitle("Publish directly with deviceId", for: .normal)
-        publishDirectWithDeviceId.layer.borderWidth = 0.6
-        publishDirectWithDeviceId.layer.borderColor = UIColor(hexFromString: "333333").cgColor
-        publishDirectWithDeviceId.backgroundColor = UIColor(hexFromString: "333333")
-        publishDirectWithDeviceId.setTitleColor(UIColor(hexFromString: "FFFFFF"), for: .normal)
-        publishDirectWithDeviceId.layer.cornerRadius = 15.0
-        publishDirectWithDeviceId.center.x = self.view.center.x
-        publishDirectWithDeviceId.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
-        publishDirectWithDeviceId.addTarget(self, action: #selector(pubDirectWithDeviceIdClicked(_ :)), for: .touchUpInside)
-        self.view.addSubview(publishDirectWithDeviceId)
-        
         //direct clientID
         let publishDirectWithClientId = UIButton.init(type: .system)
         publishDirectWithClientId.frame = CGRect(x: 50, y: 280, width: 300, height: 52)
@@ -51,6 +37,21 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
         publishDirectWithClientId.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         publishDirectWithClientId.addTarget(self, action: #selector(pubDirectWithClientIdClicked(_ :)), for: .touchUpInside)
         self.view.addSubview(publishDirectWithClientId)
+        
+        //direct deviceID
+        let publishDirectWithDeviceId = UIButton.init(type: .system)
+        publishDirectWithDeviceId.frame = CGRect(x: 50, y: 180, width: 300, height: 52)
+        publishDirectWithDeviceId.setTitle("Publish directly with deviceId", for: .normal)
+        publishDirectWithDeviceId.layer.borderWidth = 0.6
+        publishDirectWithDeviceId.layer.borderColor = UIColor(hexFromString: "333333").cgColor
+        publishDirectWithDeviceId.backgroundColor = UIColor(hexFromString: "333333")
+        publishDirectWithDeviceId.setTitleColor(UIColor(hexFromString: "FFFFFF"), for: .normal)
+        publishDirectWithDeviceId.layer.cornerRadius = 15.0
+        publishDirectWithDeviceId.center.x = self.view.center.x
+        publishDirectWithDeviceId.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
+        publishDirectWithDeviceId.addTarget(self, action: #selector(pubDirectWithDeviceIdClicked(_ :)), for: .touchUpInside)
+        self.view.addSubview(publishDirectWithDeviceId)
+    
         
         //direct native recipient
         let publishDirectNative = UIButton.init(type: .system)
@@ -131,7 +132,7 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
         let data: [String: Any] = [
             "notification": [
                 "title": "Hello from Ably!",
-                "body": "Example push notification from Ably."
+                "body": "This was sent from directly using native details"
             ],
             "data": [
                 "foo": "bar",
@@ -143,14 +144,14 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
     
     @objc func pubViaChannelClicked(_ : UIButton) {
         print("Clicked publish via push channel")
-        let pushChannel = appDelegate.realtime.channels.get("push")
+        let pushChannel = appDelegate.realtime.channels.get(appDelegate.myPushChannel)
         
         var message = ARTMessage(name: "example", data: "rest data")
         message.extras = [
             "push": [
                 "notification": [
                     "title": "Hello from Ably!",
-                    "body": "Example push notification from Ably."
+                    "body": "This was sent from directly via an Ably channel"
                 ],
                 "data": [
                     "foo": "bar",

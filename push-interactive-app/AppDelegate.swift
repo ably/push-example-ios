@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
     var myDeviceId = ""
     var myClientId = ""
     var myDeviceToken = ""
+    var myPushChannel = "push:"+String.random()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -92,6 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
                     print(self.myClientId)
                     print(self.myDeviceToken)
                     print(self.myDeviceId)
+                    print(self.myPushChannel)
                 case .failed:
                     print("Connection to Ably failed")
                 default:
@@ -180,3 +182,16 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     
 }
 
+extension String {
+    
+    static func random(length: Int = 8) -> String {
+        let base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        var randomString: String = ""
+        
+        for _ in 0..<length {
+            let randomValue = arc4random_uniform(UInt32(base.count))
+            randomString += "\(base[base.index(base.startIndex, offsetBy: Int(randomValue))])"
+        }
+        return randomString
+    }
+}
