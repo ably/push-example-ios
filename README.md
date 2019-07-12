@@ -18,7 +18,7 @@ Make sure you have the following installed on your system:
 6. Host the `server.js` file on a server like [Glitch](https://glitch.com)
 7. Run the project in Xcode. It will install the app on your phone.
 
-Make sure that your `server.js` has your API keys with required permission:
+Make sure that your `server.js` has your API keys with the required permissions:
 - `push-subscribe`: Allows you to activate push on device, subscribe to push to receive notifications
 - `push-admin`: Has `push-subscribe` rights plus rights to publish notifications directly using various credentials or via a realtime channel.
 
