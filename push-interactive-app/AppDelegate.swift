@@ -81,13 +81,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
                 }
             }
         }
+        options.logLevel = ARTLogLevel.verbose
         realtime = ARTRealtime(options: options)
         realtime.connection.on { state in
             if let state = state {
                 switch state.current {
                 case .connected:
                     print("Successfully connected to Ably with clientId")
-                    print(self.realtime.auth.clientId)
                     self.myClientId = String(self.realtime.auth.clientId ?? "none")
                     self.myDeviceId = String(self.realtime.device.id)
                     print(self.myClientId)
@@ -128,15 +128,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
     func didActivateAblyPush(_ error: ARTErrorInfo?) {
         print("!!!inside activate deletage")
         NotificationCenter.default.post(name: .ablyPushDidActivate, object: nil, userInfo: ["Error": error]) //emit this event to any subscribers
-       
+        if (error != nil) {
+            print("activation failed")
+            return
+        }
         print("activation successful")
         return
+
     }
     
     func didDeactivateAblyPush(_ error: ARTErrorInfo?) {
         print("!!!inside deactivate deletage")
         NotificationCenter.default.post(name: .ablyPushDidDeactivate, object: nil, userInfo: ["Error": error]) //emit this event to any subscribers
-        
+        if (error != nil) {
+            print("deactivation failed")
+            return
+        }
         print("deactivation successful")
         return
     }
