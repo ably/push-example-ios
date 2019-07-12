@@ -21,7 +21,7 @@
 		6DF3738A22D527AE00698449 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738922D527AD00698449 /* Protocols.swift */; };
 		6DF3738C22D52C3800698449 /* MenuOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738B22D52C3800698449 /* MenuOptionCell.swift */; };
 		6DF3738E22D530A800698449 /* MenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738D22D530A800698449 /* MenuOption.swift */; };
-		6DF3739022D538BF00698449 /* SubToPushChClientIdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738F22D538BF00698449 /* SubToPushChClientIdController.swift */; };
+		6DF3739022D538BF00698449 /* SubUnsubPushController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3738F22D538BF00698449 /* SubUnsubPushController.swift */; };
 		6DF3739922D5E3F000698449 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3739822D5E3F000698449 /* AlertController.swift */; };
 		6DF3739B22D68C8100698449 /* PublishNotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3739A22D68C8100698449 /* PublishNotificationsController.swift */; };
 		6DF3739D22D7410900698449 /* DeviceDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3739C22D7410800698449 /* DeviceDetailsController.swift */; };
@@ -69,7 +69,7 @@
 		6DF3738922D527AD00698449 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		6DF3738B22D52C3800698449 /* MenuOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOptionCell.swift; sourceTree = "<group>"; };
 		6DF3738D22D530A800698449 /* MenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuOption.swift; sourceTree = "<group>"; };
-		6DF3738F22D538BF00698449 /* SubToPushChClientIdController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubToPushChClientIdController.swift; sourceTree = "<group>"; };
+		6DF3738F22D538BF00698449 /* SubUnsubPushController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubUnsubPushController.swift; sourceTree = "<group>"; };
 		6DF3739822D5E3F000698449 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		6DF3739A22D68C8100698449 /* PublishNotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishNotificationsController.swift; sourceTree = "<group>"; };
 		6DF3739C22D7410800698449 /* DeviceDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsController.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 				6DF3738322D51E2500698449 /* ContainerController.swift */,
 				6DF3738522D51E3B00698449 /* HomeController.swift */,
 				6DF3738722D51E4F00698449 /* MenuController.swift */,
-				6DF3738F22D538BF00698449 /* SubToPushChClientIdController.swift */,
+				6DF3738F22D538BF00698449 /* SubUnsubPushController.swift */,
 				6DF3739822D5E3F000698449 /* AlertController.swift */,
 				6DF3739A22D68C8100698449 /* PublishNotificationsController.swift */,
 				6DF3739C22D7410800698449 /* DeviceDetailsController.swift */,
@@ -452,7 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DF3739022D538BF00698449 /* SubToPushChClientIdController.swift in Sources */,
+				6DF3739022D538BF00698449 /* SubUnsubPushController.swift in Sources */,
 				6DF3739922D5E3F000698449 /* AlertController.swift in Sources */,
 				6DF3739D22D7410900698449 /* DeviceDetailsController.swift in Sources */,
 				6DF3738A22D527AE00698449 /* Protocols.swift in Sources */,

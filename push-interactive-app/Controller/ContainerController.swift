@@ -85,9 +85,9 @@ class ContainerController: UIViewController {
     
     func didSelectMenuOption(menuOption: MenuOption){
         switch menuOption {
-            case .subscribeToPushChClientId:
-                let pubsubController = SubToPushChClientId()
-                present(UINavigationController(rootViewController: pubsubController), animated: true, completion: nil)
+            case .subUnsubPush:
+                let subUnsubController = SubUnsubPushController()
+                present(UINavigationController(rootViewController: subUnsubController), animated: true, completion: nil)
             case .publishPushNotification:
                 print("pub notifs")
                 let pushController = PublishNotificationsController()
@@ -96,10 +96,6 @@ class ContainerController: UIViewController {
                 print("show device details")
                 let deviceDetailsController = DeviceDetailsController()
                 present(UINavigationController(rootViewController: deviceDetailsController), animated: true, completion: nil)
-            case .subscribePushCh:
-                print("sub to push ch")
-            case .unsubscribePushCh:
-                print("unsub from ch")
         }
     }
     

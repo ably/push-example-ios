@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 import Ably
 
-class SubToPushChClientId: UIViewController, UITextFieldDelegate {
+class SubUnsubPushController: UIViewController, UITextFieldDelegate {
     
     // MARK: Properties
     //var realtime: ARTRealtime!
@@ -23,20 +23,7 @@ class SubToPushChClientId: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         view.backgroundColor = UIColor(hexFromString: "F9A01B")
         configureUI()
-        
-        //client Id input field ui
-        /*
-        let txtClientId = UITextField(frame: CGRect(x: 10.0, y: 150.0, width: UIScreen.main.bounds.size.width - 50.0 , height: 50.0))
-        txtClientId.backgroundColor = .white
-        txtClientId.borderStyle = .line
-        txtClientId.keyboardAppearance = .dark
-        txtClientId.keyboardType = .default
-        txtClientId.placeholder = "Enter client id"
-        txtClientId.font = UIFont.systemFont(ofSize: 15.0)
-        txtClientId.delegate = self
-        self.view.addSubview(txtClientId)
-        */
-        
+
         //subscribe to push channel with client id button ui
         let subToPushChannelClientId = UIButton.init(type: .system)
         subToPushChannelClientId.frame = CGRect(x: 80, y: 180, width: 300, height: 52)
