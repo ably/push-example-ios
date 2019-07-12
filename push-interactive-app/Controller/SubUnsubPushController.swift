@@ -220,7 +220,7 @@ class SubUnsubPushController: UIViewController, UITextFieldDelegate {
         view.backgroundColor = .white
         
         navigationController?.navigationBar.barTintColor = .darkGray
-        navigationItem.title = "Subscribe to clientId and deviceId to push"
+        navigationItem.title = "Subscribe to push channel"
         navigationController?.navigationBar.barStyle = .black
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))

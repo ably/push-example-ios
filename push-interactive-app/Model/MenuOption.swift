@@ -16,7 +16,7 @@ enum MenuOption: Int, CustomStringConvertible {
 
     var description: String {
         switch self {
-        case .subUnsubPush: return "Sub/Unsub push channel with clientId"
+        case .subUnsubPush: return "Sub/Unsub push channel"
         case .publishPushNotification: return "Publish push notifications"
         case .showLocalDeviceDetails: return "Show local device details"
         }
