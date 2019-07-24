@@ -55,14 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
         DispatchQueue.main.async() {
             print("** didRegisterForRemoteNotificationsWithDeviceToken")
             self.myDeviceToken = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-            ARTPush.didRegisterForRemoteNotifications(withDeviceToken: deviceToken, realtime: self.getAblyRealtime())
+            ARTPush.didRegisterForRemoteNotifications(withDeviceToken: deviceToken, realtime: self.realtime)
         }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         DispatchQueue.main.async() {
             print("** didFailToRegisterForRemoteNotificationsWithError")
-            ARTPush.didFailToRegisterForRemoteNotificationsWithError(error, realtime: self.getAblyRealtime())
+            ARTPush.didFailToRegisterForRemoteNotificationsWithError(error, realtime: self.realtime)
         }
     }
     
