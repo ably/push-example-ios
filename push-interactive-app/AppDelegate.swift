@@ -81,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
                 }
             }
         }
+        options.pushRegistererDelegate = self
         options.logLevel = ARTLogLevel.verbose
         realtime = ARTRealtime(options: options)
         realtime.connection.on { state in
