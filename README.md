@@ -9,6 +9,7 @@ This app provides an interactive interface to test the various methods and actio
 ## How to use this example app
 
 - Clone this project locally
+
 ### Launch the authentication server
 You can either launch it locally or run host it on a server like [Glitch](https://glitch.com)
 Make sure that your `server.js` has your API keys with the required permissions:
