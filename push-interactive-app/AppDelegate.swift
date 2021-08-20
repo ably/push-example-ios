@@ -85,21 +85,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
         options.logLevel = ARTLogLevel.verbose
         realtime = ARTRealtime(options: options)
         realtime.connection.on { state in
-            if let state = state {
-                switch state.current {
-                case .connected:
-                    print("Successfully connected to Ably with clientId")
-                    self.myClientId = String(self.realtime.auth.clientId ?? "none")
-                    self.myDeviceId = String(self.realtime.device.id)
-                    print(self.myClientId)
-                    print(self.myDeviceToken)
-                    print(self.myDeviceId)
-                    print(self.myPushChannel)
-                case .failed:
-                    print("Connection to Ably failed")
-                default:
-                    break
-                }
+            switch state.current {
+            case .connected:
+                print("Successfully connected to Ably with clientId")
+                self.myClientId = String(self.realtime.auth.clientId ?? "none")
+                self.myDeviceId = String(self.realtime.device.id)
+                print(self.myClientId)
+                print(self.myDeviceToken)
+                print(self.myDeviceId)
+                print(self.myPushChannel)
+            case .failed:
+                print("Connection to Ably failed")
+            default:
+                break
             }
         }
         return realtime
