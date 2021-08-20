@@ -15,7 +15,8 @@ extension Notification.Name {
     static let ablyPushDidDeactivate = Notification.Name(rawValue: "ablyPushDidDeactivate")
 }
 
-let authURL = "<YOUR-AUTH-URL>"
+// This can be any valid URL, for example: "http://192.168.1.50:62777/auth", where the IP address is your Mac machine, taken from system preferences.
+//let authURL = "https://<YOUR-AUTH-SERVER>/auth" 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate {
     
@@ -81,24 +82,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
                 }
             }
         }
+
+        // Explicitly set the delegate for push activation/ deactivation/ update events.
+       options.pushRegistererDelegate = self
         options.logLevel = ARTLogLevel.verbose
         realtime = ARTRealtime(options: options)
         realtime.connection.on { state in
-            if let state = state {
-                switch state.current {
-                case .connected:
-                    print("Successfully connected to Ably with clientId")
-                    self.myClientId = String(self.realtime.auth.clientId ?? "none")
-                    self.myDeviceId = String(self.realtime.device.id)
-                    print(self.myClientId)
-                    print(self.myDeviceToken)
-                    print(self.myDeviceId)
-                    print(self.myPushChannel)
-                case .failed:
-                    print("Connection to Ably failed")
-                default:
-                    break
-                }
+            switch state.current {
+            case .connected:
+                print("Successfully connected to Ably with clientId")
+                self.myClientId = String(self.realtime.auth.clientId ?? "none")
+                self.myDeviceId = String(self.realtime.device.id)
+                print(self.myClientId)
+                print(self.myDeviceToken)
+                print(self.myDeviceId)
+                print(self.myPushChannel)
+            case .failed:
+                print("Connection to Ably failed")
+            default:
+                break
             }
         }
         return realtime

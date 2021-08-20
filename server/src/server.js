@@ -2,8 +2,9 @@
 const express = require('express');
 const app = express();
 const Ably = require('ably');
-var realtime = new Ably.Realtime({key: "<YOUR-API-KEY>"});
-var rest = new Ably.Rest({key: "<YOUR-API-KEY>"});
+const ablyApiKey = "<YOUR-API-KEY>";
+var realtime = new Ably.Realtime({key: ablyApiKey});
+var rest = new Ably.Rest({key: ablyApiKey});
 
 var uniqueId = function() {
     return 'id-' + Math.random().toString(36).substr(2, 16);

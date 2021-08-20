@@ -2,25 +2,28 @@ This app provides an interactive interface to test the various methods and actio
 
 ## Pre-requisites
 
-Make sure you have the following installed on your system:
-
 1. [Xcode](https://developer.apple.com/xcode/) 
-2. [CocoaPods](https://cocoapods.org/)
-3. An apple device as Push Notifications cannot be tested on an emulator
+2. A physical iOS device as Push Notifications cannot be tested on a simulator
+3. [NodeJS](https://nodejs.org/en/) (to run the server locally)
 
-## How to use this app?
+## How to use this example app
 
-1. Clone this project locally.
-2. `$ cd` to the folder where you cloned this project.
-3. Run `$ pod install` to install the dependencies from the Podfile.
-4. Run `$ open push-interactive-app.xcworkspace` to open the project in Xcode.
-5. Connect your iPhone and choose it to be your target build device in Xcode.
-6. Host the `server.js` file on a server like [Glitch](https://glitch.com)
-7. Run the project in Xcode. It will install the app on your phone.
+- Clone this project locally
 
+### Launch the authentication server
+You can either launch it locally or run host it on a server like [Glitch](https://glitch.com)
 Make sure that your `server.js` has your API keys with the required permissions:
 - `push-subscribe`: Allows you to activate push on device, subscribe to push to receive notifications
 - `push-admin`: Has `push-subscribe` rights plus rights to publish notifications directly using various credentials or via a realtime channel.
+- Install the dependencies: `cd server && npm install` 
+- Run the local server: `npm start`
+
+### Launch the iOS application
+- `$ cd` to the folder where you cloned this project.
+- Run `$ open push-interactive-app.xcodeproj` to open the project in Xcode.
+- Connect your iPhone and choose it to be your target build device in Xcode.
+- In `AppDelegate.swift`, update `authURL` with your authentication server.
+- Run the project in Xcode. It will install the app on your phone.
 
 ## Screenshots
 
