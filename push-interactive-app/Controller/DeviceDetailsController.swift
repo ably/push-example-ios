@@ -14,37 +14,35 @@ class DeviceDetailsController: UIViewController, UITextFieldDelegate {
     // MARK: Properties
     var delegate: HomeControllerDelegate?
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var txtDeviceDetails: UITextView!
+    
+    var device: ARTLocalDevice {
+        return appDelegate.realtime.device
+    }
     
     // MARK: Init
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(hexFromString: "F9A01B")
         configureUI()
-        
-        let txtDeviceDetails = UITextView(frame: CGRect(x: 10.0, y: 150.0, width: UIScreen.main.bounds.size.width - 50.0 , height: UIScreen.main.bounds.size.height))
-        txtDeviceDetails.backgroundColor = .white
+        updateDetailsText()
+    }
+    
+    func updateDetailsText() {
+        txtDeviceDetails.text =
+        "1. ClientId:\n\(device.clientId ?? "<empty>")" +
+        "\n\n\n2. DeviceId:\n\(device.id)" +
+        "\n\n\n3. DevicePushDetails recipient:\n\(device.push.recipient)" +
+        "\n\n\n4. DeviceIdentityTokenDetails:\n\(device.identityTokenDetails?.description ?? "<empty>")"
+    }
+    
+    func configureUI() {
+        txtDeviceDetails = UITextView(frame: CGRect(x: 10.0, y: 150.0, width: UIScreen.main.bounds.size.width - 50.0 , height: UIScreen.main.bounds.size.height))
+        txtDeviceDetails.backgroundColor = .systemBackground
         //txtDeviceDetails.borderStyle = .line
         txtDeviceDetails.keyboardAppearance = .dark
         txtDeviceDetails.keyboardType = .default
         txtDeviceDetails.font = UIFont.systemFont(ofSize: 18.0)
         txtDeviceDetails.textContainerInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
-        txtDeviceDetails.text = "1. ClientId is " + appDelegate.myClientId + "\n\n\n2. DeviceId is " + appDelegate.myDeviceId + "\n\n\n3. DeviceToken is " + appDelegate.myDeviceToken + "\n\n\n4. Push channel is " + appDelegate.myPushChannel
-        //txtDeviceDetails.append =
-        self.view.addSubview(txtDeviceDetails)
-    }
-    
-    @objc func handleDismiss(){
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func configureUI() {
-        view.backgroundColor = .white
-        
-        navigationController?.navigationBar.barTintColor = .darkGray
-        navigationItem.title = "Local device details"
-        navigationController?.navigationBar.barStyle = .black
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "baseline_clear_white_36pt_3x").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
-        
+        self.view = txtDeviceDetails
     }
 }

@@ -25,10 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
     var realtime: ARTRealtime!
     var channel: ARTRealtimeChannel!
     var subscribed = false
-    var myDeviceId = ""
-    var myClientId = ""
-    var myDeviceToken = ""
-    var myPushChannel = "push:"+String.random()
+    var myPushChannel = "push:" + String.random()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -55,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         DispatchQueue.main.async() {
             print("** didRegisterForRemoteNotificationsWithDeviceToken")
-            self.myDeviceToken = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
             ARTPush.didRegisterForRemoteNotifications(withDeviceToken: deviceToken, realtime: self.realtime)
         }
     }
@@ -83,20 +79,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ARTPushRegistererDelegate
             }
         }
 
-        // Explicitly set the delegate for push activation/ deactivation/ update events.
-       options.pushRegistererDelegate = self
+        // Explicitly set the delegate for push activation/deactivation/update events.
+        options.pushRegistererDelegate = self
         options.logLevel = ARTLogLevel.verbose
         realtime = ARTRealtime(options: options)
         realtime.connection.on { state in
             switch state.current {
             case .connected:
                 print("Successfully connected to Ably with clientId")
-                self.myClientId = String(self.realtime.auth.clientId ?? "none")
-                self.myDeviceId = String(self.realtime.device.id)
-                print(self.myClientId)
-                print(self.myDeviceToken)
-                print(self.myDeviceId)
-                print(self.myPushChannel)
+                print("Client id: \(self.realtime.auth.clientId ?? "none")")
+                print("Device id: \(self.realtime.device.id)")
+                print("Device Token: \(self.realtime.device.deviceToken() ?? "none")")
+                print("Push Channel: \(self.myPushChannel)")
             case .failed:
                 print("Connection to Ably failed")
             default:

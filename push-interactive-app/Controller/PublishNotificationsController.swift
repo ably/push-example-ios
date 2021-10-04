@@ -84,9 +84,11 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
     
     // MARK: Selectors
     @objc func pubDirectWithDeviceIdClicked(_ : UIButton) {
-        print("Clicked publish direct with deviceId")
+        let deviceId = appDelegate.realtime.device.id
+        guard deviceId != "" else { return }
+        print("Clicked publish direct with deviceId: \(deviceId)")
         let recipient: [String: Any] = [
-            "deviceId": appDelegate.myDeviceId
+            "deviceId": deviceId
         ]
         let data: [String: Any] = [
             "notification": [
@@ -99,14 +101,13 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
             ]
         ]
         appDelegate.realtime.push.admin.publish(recipient, data: data)
-
     }
     
     @objc func pubDirectWithClientIdClicked(_ : UIButton) {
-        print("Clicked publish direct with clientId")
-        print("ClientId to publish to: " + appDelegate.myClientId)
+        guard let clientId = appDelegate.realtime.device.clientId else { return }
+        print("ClientId to publish to: " + clientId)
         let recipient: [String: Any] = [
-            "clientId": appDelegate.myClientId
+            "clientId": clientId
         ]
         let data: [String: Any] = [
             "notification": [
@@ -123,10 +124,11 @@ class PublishNotificationsController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func pubDirectWithNativeRecipientClicked(_ : UIButton) {
-        print("Clicked publish direct with Native recipient details")
+        guard let deviceToken = appDelegate.realtime.device.deviceToken() else { return }
+        print("Clicked publish direct with native recipient details (deviceToken): \(deviceToken)")
         let recipient: [String: Any] = [
             "transportType": "apns",
-            "deviceToken": appDelegate.myDeviceToken
+            "deviceToken": deviceToken
         ]
         
         let data: [String: Any] = [
