@@ -1,0 +1,27 @@
+PODS:
+  - Ably (1.2.6):
+    - AblyDeltaCodec (= 1.3.1)
+    - msgpack (= 0.4.0)
+  - AblyDeltaCodec (1.3.1)
+  - msgpack (0.4.0)
+
+DEPENDENCIES:
+  - Ably (from `../ably-cocoa`)
+
+SPEC REPOS:
+  trunk:
+    - AblyDeltaCodec
+    - msgpack
+
+EXTERNAL SOURCES:
+  Ably:
+    :path: "../ably-cocoa"
+
+SPEC CHECKSUMS:
+  Ably: 6f58ab63407c71f984ef61112f60525cf9bc634a
+  AblyDeltaCodec: f66a44f743b2a0703f29a65208321d4ea43362d6
+  msgpack: c85f6251873059738472ae136951cec5f30f3251
+
+PODFILE CHECKSUM: 450c6b459e4b171504936a278cd359626840c549
+
+COCOAPODS: 1.11.2
