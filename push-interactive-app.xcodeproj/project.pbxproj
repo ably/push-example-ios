@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,7 +23,7 @@
 		6DF3739922D5E3F000698449 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3739822D5E3F000698449 /* AlertController.swift */; };
 		6DF3739B22D68C8100698449 /* PublishNotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3739A22D68C8100698449 /* PublishNotificationsController.swift */; };
 		6DF3739D22D7410900698449 /* DeviceDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF3739C22D7410800698449 /* DeviceDetailsController.swift */; };
-		AD09CDB026CFB87500603AC5 /* Ably in Frameworks */ = {isa = PBXBuildFile; productRef = AD09CDAF26CFB87500603AC5 /* Ably */; };
+		7AC5B2CCB3938659EB20772B /* Pods_push_interactive_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C59E0BC20FB2D3BC337B99E /* Pods_push_interactive_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2192274041F6B943245FB1D0 /* Pods-push-interactive-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-push-interactive-app.release.xcconfig"; path = "Target Support Files/Pods-push-interactive-app/Pods-push-interactive-app.release.xcconfig"; sourceTree = "<group>"; };
 		6DF3734D22D51BEE00698449 /* push-interactive-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "push-interactive-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DF3735022D51BEE00698449 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DF3735522D51BEE00698449 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,6 +68,8 @@
 		6DF3739822D5E3F000698449 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		6DF3739A22D68C8100698449 /* PublishNotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishNotificationsController.swift; sourceTree = "<group>"; };
 		6DF3739C22D7410800698449 /* DeviceDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailsController.swift; sourceTree = "<group>"; };
+		9C59E0BC20FB2D3BC337B99E /* Pods_push_interactive_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_push_interactive_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B52805DB702C51B84EF6A5F9 /* Pods-push-interactive-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-push-interactive-app.debug.xcconfig"; path = "Target Support Files/Pods-push-interactive-app/Pods-push-interactive-app.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD09CDB026CFB87500603AC5 /* Ably in Frameworks */,
+				7AC5B2CCB3938659EB20772B /* Pods_push_interactive_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62B53C89385443174ADC65F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C59E0BC20FB2D3BC337B99E /* Pods_push_interactive_app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6DF3734422D51BEE00698449 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +114,7 @@
 				6DF3736F22D51BF200698449 /* push-interactive-appUITests */,
 				6DF3734E22D51BEE00698449 /* Products */,
 				B1E1F5F132AC6406A0C8DC0E /* Pods */,
+				62B53C89385443174ADC65F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -192,6 +204,8 @@
 		B1E1F5F132AC6406A0C8DC0E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				B52805DB702C51B84EF6A5F9 /* Pods-push-interactive-app.debug.xcconfig */,
+				2192274041F6B943245FB1D0 /* Pods-push-interactive-app.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -203,18 +217,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6DF3737522D51BF200698449 /* Build configuration list for PBXNativeTarget "push-interactive-app" */;
 			buildPhases = (
+				442AF4FEBB4EE7BB8EF4BEEA /* [CP] Check Pods Manifest.lock */,
 				6DF3734922D51BEE00698449 /* Sources */,
 				6DF3734A22D51BEE00698449 /* Frameworks */,
 				6DF3734B22D51BEE00698449 /* Resources */,
+				2265B0377BED0727F56AA5ED /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "push-interactive-app";
-			packageProductDependencies = (
-				AD09CDAF26CFB87500603AC5 /* Ably */,
-			);
 			productName = "push-interactive-app";
 			productReference = 6DF3734D22D51BEE00698449 /* push-interactive-app.app */;
 			productType = "com.apple.product-type.application";
@@ -292,9 +305,6 @@
 				Base,
 			);
 			mainGroup = 6DF3734422D51BEE00698449;
-			packageReferences = (
-				AD09CDAE26CFB87500603AC5 /* XCRemoteSwiftPackageReference "ably-cocoa" */,
-			);
 			productRefGroup = 6DF3734E22D51BEE00698449 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -332,6 +342,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2265B0377BED0727F56AA5ED /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-push-interactive-app/Pods-push-interactive-app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-push-interactive-app/Pods-push-interactive-app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-push-interactive-app/Pods-push-interactive-app-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		442AF4FEBB4EE7BB8EF4BEEA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-push-interactive-app-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6DF3734922D51BEE00698449 /* Sources */ = {
@@ -521,18 +573,20 @@
 		};
 		6DF3737622D51BF200698449 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B52805DB702C51B84EF6A5F9 /* Pods-push-interactive-app.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "push-interactive-app/push-interactive-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XXY98AVDR6;
+				DEVELOPMENT_TEAM = JK4E2BRU7Z;
 				INFOPLIST_FILE = "push-interactive-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.ably.push-menu-app";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.ably.push-menu-app-5GxoEg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -541,18 +595,20 @@
 		};
 		6DF3737722D51BF200698449 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2192274041F6B943245FB1D0 /* Pods-push-interactive-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "push-interactive-app/push-interactive-app.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XXY98AVDR6;
+				DEVELOPMENT_TEAM = JK4E2BRU7Z;
 				INFOPLIST_FILE = "push-interactive-app/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "io.ably.push-menu-app";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.ably.push-menu-app-5GxoEg";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -681,25 +737,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		AD09CDAE26CFB87500603AC5 /* XCRemoteSwiftPackageReference "ably-cocoa" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ably/ably-cocoa";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.6;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		AD09CDAF26CFB87500603AC5 /* Ably */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AD09CDAE26CFB87500603AC5 /* XCRemoteSwiftPackageReference "ably-cocoa" */;
-			productName = Ably;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6DF3734522D51BEE00698449 /* Project object */;
 }
